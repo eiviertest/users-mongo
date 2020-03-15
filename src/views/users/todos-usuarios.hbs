@@ -1,0 +1,32 @@
+<div class="row">
+    {{#each usuarios}}
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title d-flex justify-content-between align-items-center">
+                    {{nombre}} <a href="/usuarios/editar/{{_id}}"><i class="fas fa-edit"></i></a>
+                </h4>
+                <label class="lead">Detalles</label>
+                <p>
+                    Alias: {{alias}} <br>
+                    Edad: {{edad}} años <br>
+                    <form action="/usuarios/eliminar/{{_id}}?_method=DELETE" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-block btn-sm">
+                            Eliminar
+                        </button>
+                    </form>
+                </p>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="card mx-auto">
+        <div class="card-body">
+            <h1>Bienvenido!!!</h1>
+            <p class="lead">Aún no hay usuarios registrados</p>
+            <a href="/usuarios/agregar" class="btn btn-success btn-block">Vamos a crear uno</a>
+        </div>
+    </div>
+    {{/each}}
+</div>

@@ -1,0 +1,73 @@
+{{#if comunidades}}
+<div class="col-md-8 mx-auto">
+    <div class="card">
+        <div class="card-header">
+            <h3>Nuevo Usuario</h3>
+        </div>
+        <div class="card-body">
+            <form action="/usuarios/nuevo-usuario" method="POST">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Nombre y alias</span>
+                        </div>
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre" required="true" pattern="[A-Za-z\s]{4,30}" title="No se aceptan caracteres numericos o extraños/especiales">
+                        <input type="text" name="alias" class="form-control" placeholder="Alias/Apodo" pattern="[A-Za-z\s]{3,40}" title="No se aceptan caracteres numericos o extraños/especiales">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="Number" name="edad" class="form-control" placeholder="Edad" min="15" max="60" required="true" pattern="[0-9]{2}" title="La edad debe comprender entre 15 y 60 años">
+                </div>
+                <label class="lead">Domicilio</label>
+                <div class="form-group">
+                    <input type="text" name="colonia" class="form-control" placeholder="Colonia" required="true" pattern="[A-Za-z\s]{5,50}" title="No se aceptan caracteres numericos o extraños/especiales">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="calle" class="form-control" placeholder="Calle" required="true" pattern="[A-Za-z\s]{5,50}" title="No se aceptan caracteres numericos o extraños/especiales">
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Número exterior e interior</span>
+                        </div>
+                        <input type="Number" name="no_Ext" class="form-control" placeholder="Exterior" required="true" pattern="[0-9]{0,5}" title="Solamente se aceptan caracteres numericos, 0 es igual a S/N">
+                        <input type="text" name="no_Int" class="form-control" placeholder="Interior" maxlength="2" pattern="[A-Z]{0,2}" title="Solamente se aceptan caracteres del abecedario">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="Number" name="CP" class="form-control" placeholder="Código postal" minlength="4"
+                        maxlength="7" min="9999" max="9999999" required="true" pattern="[0-9]{4,7}" title="Solamente se aceptan caracteres numericos">
+                </div>
+                <label class="lead" for="comunidad">Comunidad</label>
+                <div class="group-form">
+                    <select name="comunidad" class="form-control">
+                        {{#each comunidades}}
+                        <option value="{{comunidad}}">{{comunidad}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <label class="lead">Contacto</label>
+                <div class="form-group">
+                    <input type="Number" name="telefono" class="form-control"
+                        placeholder="Número de teléfono" minlength="10" maxlength="15" required="true" pattern="[0-9]{10,15}" title="Solamente se aceptan caracteres numericos">
+                </div>
+                <!-- Agregar mas telefonos, buscar codigo Front-end y Back-end -->
+                <a href="#" id="agregarOtroNumero">Agregar un telefono extra</a>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{{else}}
+<div class="row">
+    <div class="card mx-auto">
+        <div class="card-body">
+            <h1>Disculpa</h1>
+            <p class="lead">Pero aún no hay comunidades registradas</p>
+            <a href="/comunidades/agregar" class="btn btn-success btn-block">Agregar una</a>
+        </div>
+    </div>
+</div>
+{{/if}}
