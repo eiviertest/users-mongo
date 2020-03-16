@@ -29,6 +29,7 @@ usuariosCtrl.crearNuevoUsuario = async (req, res) => {
     telefono,
     comunidad
   } = req.body;
+  //Verificate the fields from frontend, it must be a function
   const errores = [];
   if (!nombre) {
     errores.push({ text: "Favor de ingresar su nombre" });
@@ -66,6 +67,7 @@ usuariosCtrl.renderEditarUsuario = async (req, res) => {
   res.render("users/editar-usuario", { usuario, comunidades });
 };
 usuariosCtrl.editarUsuario = async (req, res) => {
+  //Destructuring assignment with the request
   const {
     nombre,
     alias,
@@ -78,6 +80,7 @@ usuariosCtrl.editarUsuario = async (req, res) => {
     telefono,
     comunidad
   } = req.body;
+  //Use user's schema and create a mongodb's document
   await Usuario.findByIdAndUpdate(req.params.id, {
     nombre,
     alias,
@@ -91,6 +94,7 @@ usuariosCtrl.editarUsuario = async (req, res) => {
 
 //Eliminar un usuario
 usuariosCtrl.eliminarUsuario = async (req, res) => {
+  //Use module mongoose
   await Usuario.findByIdAndDelete(req.params.id);
   res.redirect("/usuarios");
 };

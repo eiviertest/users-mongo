@@ -18,8 +18,8 @@ comunidadesCtrl.crearNuevaComunidad = async (req, res) => {
 };
 
 comunidadesCtrl.renderEditarComunidad = async (req, res) => {
-  const comunidades = await Comunidad.findById(req.params.id);
-  res.render("comunidades/editar-comunidad", { comunidades });
+  const comunidad = await Comunidad.findById(req.params.id);
+  res.render("comunidades/editar-comunidad", { comunidad });
 };
 
 comunidadesCtrl.editarComunidad = async (req, res) => {
